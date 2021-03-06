@@ -1,0 +1,155 @@
+@import "../../mixins.scss";
+
+.header {
+	@include flex-centered;
+	box-sizing: border-box;
+	width: 100%;
+	height: auto;
+	background-color: #000000;
+	color: white;
+	padding: 10px 20px;
+}
+
+.header h1 {
+	margin: 0;
+}
+
+.main {
+	padding: 0px 20px;
+	background-color: #dfc0da;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.novel-title {
+	@include classic-colors;
+
+	width: 100%;
+	height: auto;
+	
+	font-weight: bold;
+	font-size: 26px;
+
+	padding: 10px;
+	border: 2px #707070;
+	border-style: solid none solid none;
+	margin-top: 10px;
+	
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.novel-container {
+	background-color: white;
+	width: 100%;
+	display: inherit;
+	flex-wrap: inherit;
+	padding: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.novel-decisions {
+	/* visibility: hidden; */
+	border-top: 2px solid rgba(0, 139, 139, 0.25);
+	border-bottom: 2px solid rgba(0, 139, 139, 0.25);
+	background-color: rgba(0, 139, 139, 0.5);
+	font-weight: bold;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 500px;
+	z-index: 1;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;
+}
+
+.novel-decision-radio [type='radio'] {
+	display: none;
+}
+
+.novel-decision-radio {
+	cursor: pointer;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.1);
+	padding: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.novel-decision-radio:hover {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.novel-decision-radio:hover .novel-decision-info {
+	color: black;
+	text-shadow: none;
+}
+
+.novel-decision-radio:active {
+	background-color: rgba(230, 230, 230, 0.5);
+}
+
+.novel-decision-info {
+	text-shadow: 0 0 2px #000000;
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+}
+
+.novel-conversation {
+	@include classic-colors;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100px;
+	padding: 10px;
+	border-width: 2px 2px 0px;
+	border-color: #707070;
+	border-style: solid;
+	overflow-y: scroll;
+}
+
+.novel-conversation-line {
+	font-size: 20px;
+	font-weight: bold;
+	margin: 0;
+}
+
+.novel-options {
+	width: 100%;
+	padding: 10px;
+	border: 2px #707070;
+	border-style: solid;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.novel-options-button {
+	background-color: black;
+	color: white;
+	width: 100%;
+	padding: 10px;
+	font-size: 18px;
+	outline: none;
+	transition: 1s;
+	cursor: pointer;
+}
+
+.novel-options-button:hover {
+	background-color: #707070;
+}

@@ -1,0 +1,70 @@
+@import '../../mixins';
+
+.stage {
+	background-image: url('https://cdn5.f-cdn.com/contestentries/1766305/45851855/5eae1233c4b64_thumb900.jpg');
+	background-position: center;
+	position: relative;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 500px;
+	background-color: wheat;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-end;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	overflow: hidden;
+}
+
+.stage-character {
+	/* background-color: blue; */
+	width: 500px;
+	height: 400px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-end;
+	justify-content: center;
+}
+
+.stage-character img {
+	max-height: 400px;
+	max-width: 500px;
+}
+
+.stage-character-name {
+	@include classic-colors;
+	padding: 5px 10px;
+	font-weight: bold;
+	font-size: 22px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	border: 2px #707070;
+	border-style: solid solid none;
+	z-index: 2;
+	border-top-right-radius: 10px;
+}
+
+.stage-message {
+	/* visibility: hidden; */
+	box-sizing: border-box;
+	@include classic-colors;
+	font-weight: bold;
+	font-size: 18px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 2;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;
+	padding: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border: 2px solid #707070;
+}

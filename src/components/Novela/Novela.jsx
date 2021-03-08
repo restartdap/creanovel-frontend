@@ -1,30 +1,35 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import './NovelaHome.scss';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import './Novela.scss';
 import NovelaStage from './NovelaStage';
+import axios from 'axios';
 
-const NovelaHome = ({ title = "Undefined" }) => {
+const Novela = () => {
 
+    const { id } = useParams();
+
+    const [novelaId, setNovelaId] = useState(id);
     const [novela, setNovela] = useState({});
     const [conversacion, setConversacion] = useState({});
 
     useEffect(() => {
-        const consultarConversacion = async () => {
-            try {
-                const resultado = await fetch("urldemiapi.com/api/conversacion/123");
-            } catch (error) {
-                console.error(error);
-            }
-        }
-    }, [conversacion]);
+        consultarConversacion();
+    }, []);
 
-    if (title === "Undefined") {
-        return;
+    const consultarConversacion = async () => {
+        try {
+            const resultado = await axios.get(`https://safe-brook-38787.herokuapp.com/api/novelas/${novelaId}`);
+            const data = await resultado.data;
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
         <main className="main">
             <div className="novel-title">
-                {title}
+                La wea
             </div>
             <div className="novel-container">
                 <NovelaStage />
@@ -42,4 +47,4 @@ const NovelaHome = ({ title = "Undefined" }) => {
     );
 };
 
-export default NovelaHome;
+export default Novela;

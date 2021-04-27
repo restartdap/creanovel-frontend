@@ -1,11 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import './Novelas.scss';
+import axiosClient from '../../config/axios';
+import AuthContext from '../../context/authentication/authContext';
 
 const Novelas = () => {
 
+    const history = useHistory();
+    const authContext = useContext(AuthContext);
+    const { autenticado } = authContext;
+
     const [novelas, setNovelas] = useState([]);
+
+    useEffect(() => {
+        if (!autenticado) {
+            history.push("/register");
+        }
+    }, [autenticado, history]);
 
     useEffect(() => {
         getNovels();
@@ -13,8 +24,9 @@ const Novelas = () => {
 
     const getNovels = async () => {
         try {
-            const resultado = await axios.get("https://safe-brook-38787.herokuapp.com/api/novelas");
+            const resultado = await axiosClient.get("/api/novelas");
             const data = await resultado.data;
+            console.log("novelas", data);
             setNovelas(data.novelas);
         } catch (error) {
             console.error(error);

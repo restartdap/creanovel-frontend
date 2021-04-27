@@ -1,47 +1,58 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-
-import './Novela.scss';
+import React, { useState, useEffect, useContext } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import axiosClient from '../../config/axios';
 import NovelaStage from './NovelaStage';
-import axios from 'axios';
+import AuthContext from '../../context/authentication/authContext';
+import './Novela.scss';
 
 const Novela = () => {
 
-    const { id } = useParams();
+    const initialState = {
+        descripcion: null,
+        estado: null,
+        escenas: null,
+        _id: null,
+        titulo: null
+    };
 
-    const [novelaId, setNovelaId] = useState(id);
-    const [novela, setNovela] = useState({});
-    const [conversacion, setConversacion] = useState({});
+    const { id } = useParams();
+    const [novela, setNovela] = useState(initialState);
+
+    const authContext = useContext(AuthContext);
+    const { autenticado } = authContext;
+    const history = useHistory();
 
     useEffect(() => {
-        consultarConversacion();
-    }, []);
+        if (!autenticado) {
+            history.push("/login");
+        }
+    }, [autenticado, history]);
 
-    const consultarConversacion = async () => {
+    useEffect(() => {
+        obtenerNovela(id);
+    }, [id]);
+
+    const obtenerNovela = async (id) => {
         try {
-            const resultado = await axios.get(`https://safe-brook-38787.herokuapp.com/api/novelas/${novelaId}`);
-            const data = await resultado.data;
+            const result = await axiosClient.get(`/api/novelas/${id}`);
+            const { novela } = result.data;
+            setNovela({
+                ...novela
+            });
+            console.log("Novela:", novela);
         } catch (error) {
+            console.log("Error al cargar la novela");
             console.error(error);
         }
     }
 
     return (
         <main className="main">
-            <div className="novel-title">
-                La wea
-            </div>
-            <div className="novel-container">
-                <NovelaStage />
-                <div className="novel-conversation">
-                    <p className="novel-conversation-line">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, commodi quae! Alias est ducimus veritatis voluptas soluta! Debitis, in. Aspernatur odio eligendi voluptates et error illum perspiciatis porro quidem ullam.
-                    </p>
-                </div>
-                <div className="novel-options">
-                    <button className="novel-options-button">Siguiente</button>
-                    <button className="novel-options-button">Anterior</button>
-                </div>
+            <div className="novel-title">{novela.titulo}</div>
+            <NovelaStage novelaId={id} />
+            <div className="novel-info">
+                <h3>Descripción</h3>
+                {novela.descripcion}
             </div>
         </main>
     );

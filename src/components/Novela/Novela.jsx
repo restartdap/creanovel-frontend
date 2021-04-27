@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import axiosClient from '../../config/axios';
 import NovelaStage from './NovelaStage';
 import AuthContext from '../../context/authentication/authContext';
+import NovelaContext from '../../context/novela/novelaContext';
 import './Novela.scss';
 
 const Novela = () => {
@@ -47,14 +48,16 @@ const Novela = () => {
     }
 
     return (
-        <main className="main">
-            <div className="novel-title">{novela.titulo}</div>
-            <NovelaStage novelaId={id} />
-            <div className="novel-info">
-                <h3>Descripción</h3>
-                {novela.descripcion}
-            </div>
-        </main>
+        <NovelaContext>
+            <main className="main">
+                <div className="novel-title">{novela.titulo}</div>
+                <NovelaStage novelaId={id} />
+                <div className="novel-info">
+                    <h3>Descripción</h3>
+                    {novela.descripcion}
+                </div>
+            </main>
+        </NovelaContext>
     );
 };
 

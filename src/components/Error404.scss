@@ -1,0 +1,54 @@
+.error-container {
+    width: 100%;
+    height: auto;
+
+    padding: 20px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+}
+
+.error {
+    width: 40%;
+    height: auto;
+
+    padding: 20px;
+    border-radius: 20px;
+    border: 5px solid white;
+    
+    background-color: plum;
+    box-shadow: 0px 0px 20px -5px #000a;
+
+    @media screen and (max-width: 600px) {
+		width: 100%;
+	}
+}
+
+.error h1 {
+    width: 100%;
+    height: auto;
+
+    margin: 0;
+    padding: 20px;
+    border-radius: 20px 20px 0 0;
+    border-bottom: 5px solid white;
+
+    text-align: center;
+
+    background-color: #000;
+    box-sizing: border-box;
+}
+
+.error h1 span {
+    color: rgb(255, 67, 67);
+}
+
+.error img {
+    width: 100%;
+    height: auto;
+    border-radius: 0 0 20px 20px;
+}
